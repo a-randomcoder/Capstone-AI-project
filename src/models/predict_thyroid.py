@@ -51,10 +51,29 @@ _model = None
 _meta = None
 
 
+def _ensure_artifacts() -> None:
+    """Create thyroid RF pickle if missing (same notebook methodology, RANDOM_STATE=42)."""
+    candidates = [
+        MODULE_DIR / "thyroid_final_model.pkl",
+        ROOT / "models" / "thyroid_final_model.pkl",
+        ROOT / "thyroid_final_model.pkl",
+    ]
+    if any(c.exists() and c.stat().st_size > 0 for c in candidates):
+        return
+    script = ROOT / "scripts" / "regenerate_thyroid_artifacts.py"
+    if not script.exists():
+        raise FileNotFoundError(
+            f"Thyroid model missing and regenerator not found: {script}"
+        )
+    import runpy
+    runpy.run_path(str(script), run_name="__main__")
+
+
 def _load():
     global _model, _meta
     if _model is not None:
         return
+    _ensure_artifacts()
     candidates = [
         MODULE_DIR / "thyroid_final_model.pkl",
         ROOT / "models" / "thyroid_final_model.pkl",
