@@ -1,43 +1,33 @@
-# Finish setup after clone
+# Setup — Maternal Digital Twin
 
-## 1. Clone / pull
+## Bootstrap (recommended)
 
 ```bash
 git clone https://github.com/a-randomcoder/Capstone-AI-project.git
 cd Capstone-AI-project
-git pull origin main
-```
-
-## 2. Install deps
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-```
-
-## 3. Regenerate anemia joblibs (exact Track B pipeline)
-
-```bash
-python scripts/regenerate_anemia_artifacts.py
-```
-
-This recreates `models/anemia/*.joblib` with Macro F1 0.675 (same as notebook).
-
-## 4. GDM model path
-
-Already present at:
-`Capstone-AI-Project/Notebook/models/gdm_best_model.joblib`
-
-## 5. Preeclampsia models
-
-Already at repo root:
-- `preeclampsia_model.pkl`
-- `preeclampsia_preprocessing.pkl`
-
-## 6. Run
-
-```bash
+bash scripts/bootstrap_integration.sh
 python run_demo.py
 streamlit run frontend/app.py
 ```
+
+## Models
+
+| Module | Artifact | Source |
+|--------|----------|--------|
+| Anemia | `models/anemia/*.joblib` | `python scripts/regenerate_anemia_artifacts.py` |
+| Preeclampsia | `preeclampsia_model.pkl` | Already in repo root |
+| GDM | `Capstone-AI-Project/Notebook/models/gdm_best_model.joblib` | Already in repo |
+| Thyroid | `models/thyroid/thyroid_final_model.pkl` | `python scripts/regenerate_thyroid_artifacts.py` (needs `origin_data.xlsx`) |
+
+If `src/models/predict_anemia.py` is missing after clone:
+
+```bash
+python scripts/assemble_part1.py
+python scripts/assemble_part2.py
+```
+
+## Limitations
+
+No overall clinical risk score. Anemia excludes Hb/PCV (leakage). Preeclampsia = RiskLevel proxy. GDM = synthetic. Thyroid = single-center SCH-later risk. Not a diagnostic system.
