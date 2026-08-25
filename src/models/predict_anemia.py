@@ -73,10 +73,31 @@ _metadata = None
 _feature_importance = None
 
 
+def _ensure_artifacts() -> None:
+    """Create Track B joblibs if missing (same notebook methodology, RANDOM_STATE=42)."""
+    needed = [
+        MODULE_DIR / "anemia_best_model.joblib",
+        MODULE_DIR / "anemia_preprocessor.joblib",
+        MODULE_DIR / "anemia_label_encoder.joblib",
+        MODULE_DIR / "anemia_model_metadata.json",
+    ]
+    if all(p.exists() and p.stat().st_size > 0 for p in needed):
+        return
+    ROOT = Path(__file__).resolve().parents[2]
+    script = ROOT / "scripts" / "regenerate_anemia_artifacts.py"
+    if not script.exists():
+        raise FileNotFoundError(
+            f"Anemia artifacts missing under {MODULE_DIR} and regenerator not found: {script}"
+        )
+    import runpy
+    runpy.run_path(str(script), run_name="__main__")
+
+
 def _load():
     global _model, _preprocessor, _label_encoder, _metadata, _feature_importance
     if _model is not None:
         return
+    _ensure_artifacts()
     _model = joblib.load(MODULE_DIR / "anemia_best_model.joblib")
     _preprocessor = joblib.load(MODULE_DIR / "anemia_preprocessor.joblib")
     _label_encoder = joblib.load(MODULE_DIR / "anemia_label_encoder.joblib")
