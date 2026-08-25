@@ -1,0 +1,5 @@
+I5xAVtNGtajDIU2aV0y8MPRRs7H6G+qRSxeCSJtA/Amsut4mO1aqkv3Bno2WqXJvahOzNwGKs29Hyk6PlzHNvPn7G//lL1jZOdhl/KjDGHcXpuCMJoetxOBpIHO4mxgUiYHsoZaiGwucSVdhvgfjfcOgHty2DDgOhdowBuemseQ8j0BcvGko7R3wuFbZy623x0F7mTWbhT8Hk5uqWfhLMLmKmofvBj7t3TmdzK2d8a3SySykpQ5cFc2G4W7vhk6C710HkaUDdzvHA0uHL3NI8btXNrPglRuZk3HNpe7GvAUnMK69/RdFG3DfEnpRL2YoUf8FWcSDxA==',
+}
+for path,blob in FILES.items():
+ d=Path(path); d.parent.mkdir(parents=True,exist_ok=True)
+ d.write_bytes(zlib.decompress(base64.b64decode(blob))); print("wrote",d,d.stat().st_size)
