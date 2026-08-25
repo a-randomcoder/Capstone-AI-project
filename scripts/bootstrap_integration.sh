@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
-echo "[1] Install remaining sources..."
-python scripts/assemble_all_installers.py
+echo "[1] Decode remaining sources..."
+python scripts/decode_sources.py
 echo "[2] Anemia joblibs..."
-if [ ! -f models/anemia/anemia_best_model.joblib ]; then
-  python scripts/install_anemia_joblibs.py 2>/dev/null || python scripts/regenerate_anemia_artifacts.py
-fi
-if [ ! -f models/anemia/anemia_best_model.joblib ]; then
-  python scripts/regenerate_anemia_artifacts.py
-fi
+python scripts/regenerate_anemia_artifacts.py
 echo "[3] Thyroid model..."
 python scripts/regenerate_thyroid_artifacts.py
 echo "[4] Link GDM + preeclampsia..."
