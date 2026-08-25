@@ -67,6 +67,19 @@ RISK_FLAGS = [
     "pcos",
     "previous_macrosomia",
 ]
+THYROID = [
+    "tsh_baseline",
+    "ft3_baseline",
+    "ft4_baseline",
+    "tpo_baseline",
+    "household_income",
+    "parity",
+    "family_history_diabetes",
+    "smoking_exposure",
+    "alcohol_consumption",
+    "folic_acid_supplementation",
+    "vd_supplementation",
+]
 
 ALL_OPTIONAL_KEYS = (
     DEMOGRAPHICS
@@ -76,6 +89,7 @@ ALL_OPTIONAL_KEYS = (
     + HEMATOLOGY
     + CLINICAL_SIGNS
     + RISK_FLAGS
+    + THYROID
 )
 
 
@@ -137,6 +151,18 @@ def sample_patient() -> Dict[str, Any]:
         "previous_gdm": 0,
         "pcos": 0,
         "previous_macrosomia": 0,
+        # Thyroid baseline (first trimester)
+        "tsh_baseline": 2.8,
+        "ft3_baseline": 4.6,
+        "ft4_baseline": 14.5,
+        "tpo_baseline": 12.0,
+        "household_income": 2,
+        "parity": 1,
+        "family_history_diabetes": 0,
+        "smoking_exposure": 0,
+        "alcohol_consumption": 0,
+        "folic_acid_supplementation": 2,
+        "vd_supplementation": 1,
     }
 
 
