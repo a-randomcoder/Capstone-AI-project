@@ -41,6 +41,7 @@ def generate_maternal_profile(patient_data: dict) -> Dict[str, Any]:
         "no gdm",
         "gdm unlikely (synthetic model)",
         "low/mid risk (proxy)",
+        "later thyroid dysfunction risk not elevated",
         "pending",
         "insufficient input",
     }
@@ -74,7 +75,7 @@ def generate_maternal_profile(patient_data: dict) -> Dict[str, Any]:
             "Maternal Digital Twin is a student AI/ML decision-support prototype. "
             "It does not diagnose disease, prescribe treatment, or replace clinical judgment. "
             "Anemia excludes Hb/PCV due to leakage. Preeclampsia uses a RiskLevel proxy label. "
-            "GDM uses a synthetic dataset/model. Thyroid is pending."
+            "GDM uses a synthetic dataset/model. Thyroid predicts later SCH-consistent risk from first-trimester labs."
         ),
     }
 
