@@ -7,24 +7,11 @@
     "negative_cases": 719,
     "prevalence_pct": 11.89
   },
-  "numeric_features": [
-    "age", "bmi", "tsh_baseline", "ft3_baseline", "ft4_baseline", "tpo_baseline", "log_tsh_baseline"
-  ],
-  "categorical_features": [
-    "household_income", "parity", "family_history_diabetes", "smoking_exposure",
-    "alcohol_consumption", "folic_acid_supplementation", "vd_supplementation"
-  ],
-  "all_features_in_order": [
-    "age", "bmi", "tsh_baseline", "ft3_baseline", "ft4_baseline", "tpo_baseline",
-    "household_income", "parity", "family_history_diabetes", "smoking_exposure",
-    "alcohol_consumption", "folic_acid_supplementation", "vd_supplementation", "log_tsh_baseline"
-  ],
+  "numeric_features": ["age", "bmi", "tsh_baseline", "ft3_baseline", "ft4_baseline", "tpo_baseline", "log_tsh_baseline"],
+  "categorical_features": ["household_income", "parity", "family_history_diabetes", "smoking_exposure", "alcohol_consumption", "folic_acid_supplementation", "vd_supplementation"],
+  "all_features_in_order": ["age", "bmi", "tsh_baseline", "ft3_baseline", "ft4_baseline", "tpo_baseline", "household_income", "parity", "family_history_diabetes", "smoking_exposure", "alcohol_consumption", "folic_acid_supplementation", "vd_supplementation", "log_tsh_baseline"],
   "best_model": "Random Forest",
   "random_state": 42,
-  "test_metrics": {
-    "roc_auc": 0.6588,
-    "pr_auc": 0.2033,
-    "f1": 0.2759
-  },
+  "test_metrics": {"roc_auc": 0.6588, "pr_auc": 0.2033, "f1": 0.2759},
   "notes": "SCH: TSH>4.0 and FT4 12-22. Single-center retrospective data. Not a diagnosis."
 }
