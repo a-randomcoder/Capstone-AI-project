@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local evaluation outputs (regenerable)
+evaluation/results/**/*.csv
+evaluation/results/**/*.json
+evaluation/results/**/*.txt
+evaluation/results/**/*.md
+evaluation/results/manual_last_run.json
+!evaluation/results/**/.gitkeep
+
+# Streamlit
+.streamlit/secrets.toml
