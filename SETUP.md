@@ -1,33 +1,41 @@
 # Setup — Maternal Digital Twin
 
-## Bootstrap (recommended)
+## Quick start
 
 ```bash
 git clone https://github.com/a-randomcoder/Capstone-AI-project.git
 cd Capstone-AI-project
-python -m venv .venv && source .venv/bin/activate
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
-bash scripts/bootstrap_integration.sh
+bash scripts/bootstrap_integration.sh   # migrates legacy paths + regenerates anemia/thyroid if missing
 python run_demo.py
 streamlit run frontend/app.py
 ```
 
 ## Models
 
-| Module | Artifact | Source |
-|--------|----------|--------|
-| Anemia | `models/anemia/*.joblib` | `python scripts/regenerate_anemia_artifacts.py` |
-| Preeclampsia | `preeclampsia_model.pkl` | Already in repo root |
-| GDM | `Capstone-AI-Project/Notebook/models/gdm_best_model.joblib` | Already in repo |
-| Thyroid | `models/thyroid/thyroid_final_model.pkl` | `python scripts/regenerate_thyroid_artifacts.py` (needs `origin_data.xlsx`) |
+| Module | Artifact location | How obtained |
+|--------|-------------------|--------------|
+| Anemia | `models/anemia/*.joblib` | `python scripts/regenerate_anemia_artifacts.py` (from `data/raw/CBC_Datasets.csv` or legacy root) |
+| Preeclampsia | `models/preeclampsia/*.pkl` | Migrated by bootstrap from repo root if needed |
+| GDM | `models/gdm/gdm_best_model.joblib` | Migrated by bootstrap from `Capstone-AI-Project/Notebook/models/` if needed |
+| Thyroid | `models/thyroid/thyroid_final_model.pkl` | `python scripts/regenerate_thyroid_artifacts.py` (from `data/raw/origin_data.xlsx` or legacy root) |
 
-If `src/models/predict_anemia.py` is missing after clone:
+## Data
 
-```bash
-python scripts/assemble_part1.py
-python scripts/assemble_part2.py
-```
+Authoritative raw datasets under `data/raw/` (bootstrap moves legacy copies there):
+
+- `CBC_Datasets.csv` — anemia
+- `maternal_health_risk.csv` — preeclampsia proxy
+- `gdm_synthetic_data.csv` — GDM (synthetic)
+- `origin_data.xlsx` — thyroid
+
+## Evaluation (offline only)
+
+See `evaluation/README.md`. Not part of the Streamlit app.
 
 ## Limitations
 
-No overall clinical risk score. Anemia excludes Hb/PCV (leakage). Preeclampsia = RiskLevel proxy. GDM = synthetic. Thyroid = single-center SCH-later risk. Not a diagnostic system.
+No overall clinical risk score. Anemia excludes Hb/PCV (leakage). Preeclampsia = RiskLevel proxy. GDM = synthetic. Thyroid = single-center SCH-later risk. Research prototype — not a diagnostic system.
