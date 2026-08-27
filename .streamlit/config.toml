@@ -1,0 +1,54 @@
+[theme]
+base = "light"
+
+# Main palette
+primaryColor = "#4D0E13"
+backgroundColor = "#EEE4DA"
+secondaryBackgroundColor = "#C8A49F"
+textColor = "#0D0500"
+
+# Shape / borders
+baseRadius = "medium"
+buttonRadius = "medium"
+borderColor = "#0D0500"
+showWidgetBorder = true
+showSidebarBorder = true
+
+# Keep links in the palette
+linkColor = "#4D0E13"
+linkUnderline = false
+
+# Make code areas less distracting
+codeTextColor = "#0D0500"
+codeBackgroundColor = "#C8A49F"
+
+# Charts
+chartCategoricalColors = ["#4D0E13", "#C8A49F", "#EEE4DA"]
+
+font = "serif"
+
+
+[theme.sidebar]
+backgroundColor = "#EEE4DA"
+secondaryBackgroundColor = "#C8A49F"
+primaryColor = "#4D0E13"
+textColor = "#0D0500"
+
+borderColor = "#0D0500"
+showWidgetBorder = true
+
+linkColor = "#4D0E13"
+linkUnderline = false
+
+codeTextColor = "#0D0500"
+codeBackgroundColor = "#C8A49F"
+
+font = "serif"
+
+
+[server]
+headless = true
+
+
+[browser]
+gatherUsageStats = false
